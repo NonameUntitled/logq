@@ -7,14 +7,17 @@ class GSASRecExperimentConfig(object):
                              negs_per_pos=256,
                              max_epochs=10000,
                              max_batches_per_epoch=100,
-                             metrics=[nDCG@10, R@1, R@10],
+                             metrics=[nDCG@10, R@1, R@10, nDCG@20, R@20],
+                            #  metrics=[nDCG@10, R@10, nDCG@20, R@20, nDCG@100, R@100, nDCG@1000, R@1000],
                              val_metric = nDCG@10,
                              early_stopping_patience=200,
                              gbce_t = 0.75,
                              filter_rated=True,
                              eval_batch_size=512,
-                             recommendation_limit=10,
-                             reuse_item_embeddings=False
+                            #  recommendation_limit=1000,
+                             recommendation_limit=20,
+                             reuse_item_embeddings=False,
+                             path_to_cnt=None
                              ):
         self.sequence_length = sequence_length
         self.embedding_dim = embedding_dim
@@ -34,4 +37,6 @@ class GSASRecExperimentConfig(object):
         self.recommendation_limit = recommendation_limit
         self.eval_batch_size = eval_batch_size
         self.reuse_item_embeddings = reuse_item_embeddings 
+
+        self.path_to_cnt = path_to_cnt
         

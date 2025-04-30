@@ -21,17 +21,23 @@ class SequenceDataset(Dataset):
 
     def __getitem__(self, idx):
         inp = self.inputs[idx]
-        rated = set(inp)
+        rated = list(set(inp))
         if len(inp) > self.max_length:
             inp = inp[-self.max_length:]
         elif len(inp) < self.max_length:
             inp = [self.padding_value] * (self.max_length - len(inp)) + inp
+        
+        if len(rated) > 10_000:
+            assert False
+        else:
+            rated_padded = [self.padding_value] * (10_000 - len(rated)) + rated
 
         inp_tensor = torch.tensor(inp, dtype=torch.long)
+        rated_tensor = torch.tensor(rated_padded, dtype=torch.long)
 
         if self.outputs:
             out_tensor = torch.tensor(self.outputs[idx], dtype=torch.long)
-            return inp_tensor, rated, out_tensor 
+            return inp_tensor, rated_tensor, out_tensor 
 
         return inp_tensor,
 
@@ -42,7 +48,8 @@ def collate_with_random_negatives(input_batch, pad_value, num_negatives):
 
 def collate_val_test(input_batch):
     input = torch.stack([input_batch[i][0] for i in range(len(input_batch))], dim=0)
-    rated = [input_batch[i][1] for i in range(len(input_batch))]
+    rated = torch.stack([input_batch[i][1] for i in range(len(input_batch))], dim=0)
+    # rated = [input_batch[i][1] for i in range(len(input_batch))]
     output = torch.stack([input_batch[i][2] for i in range(len(input_batch))], dim=0)
     return [input, rated, output]
 

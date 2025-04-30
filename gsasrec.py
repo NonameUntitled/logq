@@ -22,6 +22,26 @@ class GSASRec(torch.nn.Module):
         self.reuse_item_embeddings = reuse_item_embeddings
         if not self.reuse_item_embeddings:
             self.output_embedding = torch.nn.Embedding(self.num_items + 2, self.embedding_dim)
+        
+        self._init_weights(initializer_range=0.02)
+    
+    @torch.no_grad()
+    def _init_weights(self, initializer_range):
+        for key, value in self.named_parameters():
+            if 'weight' in key:
+                if 'norm' in key:
+                    torch.nn.init.ones_(value.data)
+                else:
+                    torch.nn.init.trunc_normal_(
+                        value.data,
+                        std=initializer_range,
+                        a=-2 * initializer_range,
+                        b=2 * initializer_range
+                    )
+            elif 'bias' in key:
+                torch.nn.init.zeros_(value.data)
+            else:
+                raise ValueError(f'Unknown transformer weight: {key}')
 
     def get_output_embeddings(self) -> torch.nn.Embedding:
         if self.reuse_item_embeddings:
@@ -58,8 +78,12 @@ class GSASRec(torch.nn.Module):
             scores[:,0] = float("-inf")
             scores[:,self.num_items+1:] = float("-inf")
             if rated is not None:
-                for i in range(len(input)):
-                    for j in rated[i]:
-                        scores[i, j] = float("-inf")
+                rated = rated.float().to(scores.device)
+                scores = torch.scatter(
+                    input=scores,
+                    dim=-1,
+                    index=rated.long(),
+                    src=torch.full_like(rated, -torch.inf)
+                )
             result = torch.topk(scores, limit, dim=1)
             return result.indices, result.values
