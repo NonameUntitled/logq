@@ -1,3 +1,4 @@
 gsasrec_env/
-models
-__pycache__/
+models/
+.vscode/
+__pycache__/datasets
