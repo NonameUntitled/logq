@@ -45,13 +45,13 @@ python train_in_batch.py --config=configs/ml1m_other.py
 ### SASRec with in-batch negatives with original log-q correction
 Implementation which subsamples negatives for each positive interaction from the current mini-batch and applies **the original logQ correction**:
 ```
-python train_in_batch_log_old.py --config=configs/ml1m_other.py 
+python train_in_batch_logq_old.py --config=configs/ml1m_other.py 
 ```
 
 ### SASRec with in-batch negatives with our implementation of log-q correction
 Implementation which subsamples negatives for each positive interaction from the current mini-batch and applies **our implementation of logQ correction**:
 ```
-python train_in_batch_log_new.py --config=configs/ml1m_other.py 
+python train_in_batch_logq_new.py --config=configs/ml1m_other.py 
 ```
 
 ### SASRec with Mixed Negative Sampling (MNS)
