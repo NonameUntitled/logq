@@ -4,7 +4,7 @@ This repository is a fork of the original gSASRec-pytorch implementation. We pro
 It is dedicated to our paper: "Correcting the LogQ Correction: Revisiting Sampled Softmax for Large-Scale Retrieval"
 
 Compared to the original gSASRec repository, we added the following:
-- Additional train files dedicated to different objective functions (full softmax, sampled softmax, etc.)
+- Additional train files dedicated to different objective functions (full softmax, sampled softmax, mns, log-q correction, etc.)
 - Configuration files for ML1M, Steam and Gowalla datasets
 
 ## Getting Started
