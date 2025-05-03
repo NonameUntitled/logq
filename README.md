@@ -6,6 +6,7 @@ It is dedicated to our paper: "Correcting the LogQ Correction: Revisiting Sample
 Compared to the original gSASRec repository, we added the following:
 - Additional train files dedicated to different objective functions (full softmax, sampled softmax, mns, log-q correction, etc.)
 - Configuration files for ML1M, Steam and Gowalla datasets
+- Already preprocessed data for ML1M, Steam and Gowalla with leave-one-out and time-split strategies.
 
 ## Getting Started
 
@@ -78,6 +79,8 @@ python train_mns_logq_new.py --config=configs/ml1m_other.py
 
 To use a different dataset, replace `ml1m` in the config filename with `steam` or `gowalla`.
 Configs with a `_time` suffix after the dataset name are dedicated to time-based splits.
+
+You can download datasets from [here](https://zenodo.org/records/15330764). Unzip `datasets.tar` in the root of the repository by running `tar -xvf datasets.tar`.
 
 ## Evaluation Example
 
