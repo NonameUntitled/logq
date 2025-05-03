@@ -12,7 +12,7 @@ Compared to the original gSASRec repository, we introduce the following addition
 
 To run code several packages should be installed:
 
-`pip install -r requirements.txt --index=https://pipy.org/simple`
+`pip install -r requirements.txt`
 
 To train or evaluate the model with our configurations, use the following commands:
 
