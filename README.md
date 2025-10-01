@@ -8,6 +8,34 @@ Compared to the original gSASRec repository, we introduce the following addition
 - Configuration files for the ML1M, Steam, and Gowalla datasets
 - Preprocessed data for ML1M, Steam, and Gowalla, prepared using both leave-one-out and time-split strategies
 
+## Citing
+
+If this repository or its results are useful in academic or industrial work, please cite both our paper and the original gSASRec:
+- Correcting the LogQ Correction: Revisiting Sampled Softmax for Large-Scale Retrieval (RecSys ’25)
+```
+@inproceedings{Khrylchenko_2025,
+title = {Correcting the LogQ Correction: Revisiting Sampled Softmax for Large-Scale Retrieval},
+booktitle = {Proceedings of the Nineteenth ACM Conference on Recommender Systems},
+publisher = {ACM},
+author = {Khrylchenko, Kirill and Baikalov, Vladimir and Makeev, Sergei and Matveev, Artem and Liamaev, Sergei},
+year = {2025},
+month = sep,
+pages = {545--550},
+doi = {10.1145/3705328.3748033},
+series = {RecSys ’25}
+}
+```
+- gSASRec: Reducing Overconfidence in Sequential Recommendation Trained with Negative Sampling (RecSys ’23)
+```
+@inproceedings{petrov2023gsasrec,
+title = {gSASRec: Reducing Overconfidence in Sequential Recommendation Trained with Negative Sampling},
+author = {Petrov, Aleksandr Vladimirovich and Macdonald, Craig},
+booktitle = {Proceedings of the 17th ACM Conference on Recommender Systems},
+pages = {116--128},
+year = {2023}
+}
+```
+
 ## Getting Started
 
 To run code several packages should be installed:
